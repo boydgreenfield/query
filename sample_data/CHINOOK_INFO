@@ -1,0 +1,1 @@
+The code for generating the Chinook Database is available under the Microsoft Public License (Ms-PL) at http://chinookdatabase.codeplex.com/license. Premade databases may be downloaded at http://chinookdatabase.codeplex.com/releases/. This database is the SQLite version dated December 2, 2012.
