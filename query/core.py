@@ -124,8 +124,6 @@ class QueryDbOrm(object):
         select = ("SELECT %s FROM %s ORDER BY %s DESC LIMIT %d" %
                   (col, self.table.name, id_col, n))
 
-        print "Select is: %s" % select
-
         return self._db.query(select, **kwargs)
 
     def first(self, n=10, by=None, **kwargs):
