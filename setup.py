@@ -44,7 +44,7 @@ from setuptools import setup
 
 setup(
     name='query',
-    version='0.1.1',  # When incrementing, make sure to update Travis link above as well
+    version='0.1.2',  # When incrementing, make sure to update Travis link above as well
     url='http://github.com/boydgreenfield/query/',
     license='MIT',
     author='Nick Boyd Greenfield',

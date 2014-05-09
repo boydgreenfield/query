@@ -5,6 +5,7 @@ import query
 import os
 import pandas as pd
 import sqlalchemy
+import warnings
 
 
 
@@ -45,7 +46,6 @@ def test_querydb_demo():
     assert db.test_connection()
 
 
-
 @with_setup(my_setup)
 def test_getpass():
     os.environ["QUERY_DB_DRIVER"] = "mysql"  # Trick to prompt for PW, disabled for sqlite
@@ -66,7 +66,6 @@ def test_getpass():
         QueryDb()
 
     sys.modules['IPython'] = ipy_module
-
 
 
 @with_setup(my_setup)
@@ -108,6 +107,19 @@ def test_querydb_query():
     # - bad return type
     with assert_raises(QueryDbError):
         db.query("SELECT * FROM Tracks", return_as="junk")
+
+
+@with_setup(my_setup)
+def test_querydb_multi_primary_keys():
+    db = QueryDb()
+    with warnings.catch_warnings(True) as w:
+        db.inspect.PlaylistTrack.last()
+        assert len(w) >= 1
+
+    db.inspect.Track.table.primary_key.columns = sqlalchemy.sql.base.ColumnCollection()
+    with assert_raises(NoPrimaryKeyException):
+        db.inspect.Track.last()
+
 
 @with_setup(my_setup)
 def test_query_db_inspect():
