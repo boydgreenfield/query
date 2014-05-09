@@ -6,7 +6,7 @@ python:
 install:
   - "pip install -r requirements.txt"
   - "git clone https://github.com/pydata/pandas.git && cd pandas && python setup.py develop && cd .."  # Temporary until v0.14 release
-  - "pip install coverage"
+  - "pip install coverage MySQLdb"
   - "pip install ."
 
 # command to run tests
