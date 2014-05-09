@@ -4,7 +4,7 @@ Python module for quick, interactive exploration of SQL databases. Designed espe
 *Please note*: As of May 8, 2014, Pandas v0.14 is still the development version. You must install it from Github, not via `pip`. Installation can be performed via:
 `git clone https://github.com/pydata/pandas.git; cd pandas; python setup.py develop`.
 
-![Travis CI Build Status](https://travis-ci.org/boydgreenfield/query.svg?branch=master)
+[![Build Status](https://travis-ci.org/boydgreenfield/query.svg?branch=master)](https://travis-ci.org/boydgreenfield/query)
 
 
 ## Quickstart
