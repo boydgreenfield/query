@@ -8,6 +8,8 @@ names, convenience methods for quickly looking at data (e.g., ``.head()``, ``.ta
 and the ability to get a rich interactive database connection up in only 2 lines
 by setting a few required environmental variables.
 
+.. image:: https://travis-ci.org/boydgreenfield/query.svg?branch=master   :target: https://travis-ci.org/boydgreenfield/query
+
 Demo in 2 lines
 ```````````````
 
@@ -42,7 +44,7 @@ from setuptools import setup
 
 setup(
     name='query',
-    version='0.1.0',
+    version='0.1.1',
     url='http://github.com/boydgreenfield/query/',
     license='MIT',
     author='Nick Boyd Greenfield',

@@ -370,7 +370,7 @@ class QueryDb(object):
         """
         Internal convert-to-DataFrame convenience wrapper.
         """
-        return pd.io.sql.read_sql(query, conn, index_col=index_col,
+        return pd.io.sql.read_sql(str(query), conn, index_col=index_col,
                                   coerce_float=coerce_float, params=params,
                                   parse_dates=parse_dates, columns=columns,
                                   flavor='DO_NOT_SPECIFY_W_SQLALCHEMY')

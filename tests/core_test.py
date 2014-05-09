@@ -11,7 +11,7 @@ import sqlalchemy
 def my_setup():
     # Set fake environmental variables, tests this functionality implicitly througout
     setup_demo_env()
-    if not os.path.exists("sample_data/Chinook_Sqlite.sqlite"):
+    if not os.path.exists(os.environ.get("QUERY_DB_NAME")):
         raise Exception("Necessary Chinook SQLite test database not found.")
 
 
