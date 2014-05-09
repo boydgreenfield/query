@@ -42,7 +42,7 @@ from setuptools import setup
 
 setup(
     name='query',
-    version='0.0.0',  # Do not submit to PyPI yet
+    version='0.1.0',
     url='http://github.com/boydgreenfield/query/',
     license='MIT',
     author='Nick Boyd Greenfield',
@@ -50,8 +50,7 @@ setup(
     description='Quick interactive exploration of SQL databases.',
     long_description=__doc__,
     packages=['query'],
-    package_data={'query': ['sample_data/*']},
-    include_package_data=True,
+    package_data={'query': ['sample_data/*.sqlite', 'sample_data/*.md']},
     zip_safe=True,
     platforms='any',
     install_requires=[
