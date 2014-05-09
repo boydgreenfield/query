@@ -331,12 +331,6 @@ class QueryDb(object):
         else:
             raise QueryDbError("Other return types not implemented.")
 
-    def q(self, sql_query, return_as="dataframe"):
-        """
-        Shortcut for .query().
-        """
-        return self.query(sql_query, return_as=return_as)
-
     def _set_metadata(self):
         """
         Internal helper to set metadata attributes.
@@ -370,9 +364,6 @@ class QueryDb(object):
                 len(table_cols),                                              # N of Cols
                 len(set([x.type.__class__ for x in table_cols.values()])),    # Distinct Col Values (class so NVARCHAR(20) and NVARCHAR(30) are not different)
                 ))
-
-        # Set a shortcut for inspect
-        self.i = self.inspect
 
     def _to_df(self, query, conn, index_col=None, coerce_float=True, params=None,
                parse_dates=None, columns=None):

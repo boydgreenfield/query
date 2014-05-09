@@ -55,10 +55,7 @@ def test_querydb_query():
 
     # And that those are all the values and properly returned by last
     # Note: last takes a DESC index and so we need to reverse the df here
-    assert (df.Name.values[::-1] == db.i.Genre.last(25).Name.values).all()
-
-    # Finally test .q() shorthand
-    assert (df == db.q("SELECT * FROM genre")).all().all()
+    assert (df.Name.values[::-1] == db.inspect.Genre.last(25).Name.values).all()
 
 
 @with_setup(my_setup)
