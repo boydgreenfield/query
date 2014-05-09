@@ -8,7 +8,7 @@ names, convenience methods for quickly looking at data (e.g., ``.head()``, ``.ta
 and the ability to get a rich interactive database connection up in only 2 lines
 by setting a few required environmental variables.
 
-.. image:: https://travis-ci.org/boydgreenfield/query.svg?branch=v0.1.1   :target: https://travis-ci.org/boydgreenfield/query
+.. image:: https://travis-ci.org/boydgreenfield/query.svg?branch=v0.1.1
 
 Demo in 2 lines
 ```````````````
