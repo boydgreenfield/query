@@ -5,11 +5,6 @@ import pandas as pd
 import os
 import warnings
 
-try:
-    from IPython.display import display, HTML
-except ImportError:
-    pass
-
 from query.helpers import setup_demo_env
 from query.html import df_to_html, GETPASS_USE_WARNING, QUERY_DB_ATTR_MSG
 
@@ -237,7 +232,11 @@ class QueryDb(object):
             if password is None:
                 if pd.core.common.in_ipnb():
                     # Display a somewhat obnoxious warning to the user
-                    display(HTML(GETPASS_USE_WARNING))
+                    try:
+                        from IPython.display import display, HTML
+                        display(HTML(GETPASS_USE_WARNING))
+                    except ImportError:
+                        pass
                 password = getpass.getpass(
                     "Please enter the %s server password:" % drivername)
 

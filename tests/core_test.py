@@ -1,6 +1,7 @@
 from nose.tools import *
 from query.core import *
 from query.helpers import setup_demo_env
+import query
 import os
 import pandas as pd
 import sqlalchemy
@@ -26,16 +27,58 @@ def test_querydb_init_sqlite():
 
     # Basic proper initialization tests
     assert db.__class__ is QueryDb
-    assert db.inspect.__class__ is QueryDbAttributes
-    assert db._meta.__class__ is QueryDbMeta
     assert db.test_connection()
     assert db.__repr__() == "Working connection to a remote SQLITE DB: Chinook_Sqlite.sqlite"
+
+    # And test if connection is broken / or _engine.begin() chokes
+    def _raise(exc):
+        raise exc
+
+    db._engine.begin = lambda: _raise(sqlalchemy.exc.OperationalError("Bad test connection", "", ""))
+    assert db.__repr__() == "Inactive connection to a remote SQLITE DB: Chinook_Sqlite.sqlite"
+    assert True
 
 
 # Note no setup, as called in demo=True condition
 def test_querydb_demo():
     db = QueryDb(demo=True)
     assert db.test_connection()
+
+
+
+@with_setup(my_setup)
+def test_getpass():
+    os.environ["QUERY_DB_DRIVER"] = "mysql"  # Trick to prompt for PW, disabled for sqlite
+    query.core.getpass.getpass = lambda _: "Fake testing password"
+    with assert_raises(sqlalchemy.exc.OperationalError):  # can't load bc no mysql db
+        QueryDb()
+
+    # Now test interactive path
+    pd.core.common.in_ipnb = lambda: True
+    with assert_raises(sqlalchemy.exc.OperationalError):  # still fails bc mysql
+        QueryDb()
+
+    # And finally test graceful failure w/o IPython
+    import sys
+    ipy_module = sys.modules['IPython']
+    sys.modules['IPython'] = None
+    with assert_raises(sqlalchemy.exc.OperationalError):  # still fails bc mysql
+        QueryDb()
+
+    sys.modules['IPython'] = ipy_module
+
+
+
+@with_setup(my_setup)
+def test_querydborm():
+    db = QueryDb()
+    assert db.inspect.__class__ is QueryDbAttributes
+    assert db.inspect._repr_html_() == query.html.QUERY_DB_ATTR_MSG
+    assert db._meta.__class__ is QueryDbMeta
+    assert db.inspect.Track.__class__ is QueryDbOrm
+    assert db.inspect.Track._repr_html_() == db.inspect.Track._html
+    assert db.inspect.Track.__repr__() == db.inspect.Track.table.__repr__()  # Track is a sqlalchemy Table obj.
+    assert db.inspect.Track.Composer.__repr__() == db.inspect.Track.Composer.column.__repr__()  # Track is a sqlalchemy Table obj.
 
 
 @with_setup(my_setup)
@@ -57,6 +100,14 @@ def test_querydb_query():
     # Note: last takes a DESC index and so we need to reverse the df here
     assert (df.Name.values[::-1] == db.inspect.Genre.last(25).Name.values).all()
 
+    # And test failures:
+    # - wrong input
+    with assert_raises(QueryDbError):
+        db.query(1)
+
+    # - bad return type
+    with assert_raises(QueryDbError):
+        db.query("SELECT * FROM Tracks", return_as="junk")
 
 @with_setup(my_setup)
 def test_query_db_inspect():
