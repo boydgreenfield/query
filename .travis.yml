@@ -11,4 +11,4 @@ install:
 
 # command to run tests
 script:
-  - nosetests --with-cover --cover-module=query
+  - nosetests --with-cover --cover-package=query
