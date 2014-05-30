@@ -14,11 +14,6 @@ Please note, query requires pandas >= v0.14.
 .. image:: https://travis-ci.org/boydgreenfield/query.svg?branch=v0.1.3
 
 
-Interactive example
-```````````````````
-.. image:: https://github.com/boydgreenfield/query/raw/v0.1.2/docs/images/interactive_demo.gif?raw=True
-
-
 Demo in 2 lines
 ```````````````
 
@@ -41,6 +36,12 @@ Or set a few environmental variables (``QUERY_DB_DRIVER``,
 
     from query import QueryDB  # capital 'B' is OK too :)
     db = QueryDB()
+
+
+Interactive example
+```````````````````
+.. image:: https://github.com/boydgreenfield/query/raw/v0.1.2/docs/images/interactive_demo.gif?raw=True
+
 
 
 Links
