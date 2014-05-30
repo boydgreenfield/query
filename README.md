@@ -1,8 +1,7 @@
 # query
 Python module for quick, interactive exploration of SQL databases. Designed especially for use with IPython. Light wrapper on top of Pandas (>= 0.14) and SQLAlchemy (>= 0.9.1). The most recent release is available on [PyPI](https://pypi.python.org/pypi/query) and can be installed via `pip install query` with the proper dependencies.
 
-*Please note*: As of May 8, 2014, Pandas v0.14 is still the development version. You must install it from Github, not via `pip`. Installation can be performed via:
-`git clone https://github.com/pydata/pandas.git; cd pandas; python setup.py develop`.
+*Please note*: `query` requires pandas v0.14, released May 30, 2014. It may be installed via `pip`: `pip install pandas`.
 
 [![Build Status](https://travis-ci.org/boydgreenfield/query.svg?branch=master)](https://travis-ci.org/boydgreenfield/query)
 

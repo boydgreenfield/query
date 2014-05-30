@@ -2,13 +2,22 @@
 ``query``
 ---------
 
-``query`` is a simple module for quickly, interactively exploring a SQL database.
-Together with IPython, it supports quick tab-completion of table and column
-names, convenience methods for quickly looking at data (e.g., ``.head()``, ``.tail()``),
-and the ability to get a rich interactive database connection up in only 2 lines
-by setting a few required environmental variables.
+``query`` is a simple module for quickly, interactively exploring a SQL
+database. Together with IPython, it supports quick tab-completion of table
+and column names, convenience methods for quickly looking at data (e.g.,
+``.head()``, ``.tail()``), and the ability to get a rich interactive database
+connection up in only 2 lines by setting a few required environmental
+variables.
 
-.. image:: https://travis-ci.org/boydgreenfield/query.svg?branch=v0.1.2
+Please note, query requires pandas >= v0.14.
+
+.. image:: https://travis-ci.org/boydgreenfield/query.svg?branch=v0.1.3
+
+
+Interactive example
+```````````````````
+.. image:: https://github.com/boydgreenfield/query/raw/v0.1.2/docs/images/interactive_demo.gif?raw=True
+
 
 Demo in 2 lines
 ```````````````
@@ -36,7 +45,7 @@ Or set a few environmental variables (``QUERY_DB_DRIVER``,
 
 Links
 `````
-* `Code and website <http://github.com/boydgreenfield/query/>`_
+* `Code and additional details on Github: <http://github.com/boydgreenfield/query/>`_
 
 """
 from setuptools import setup
@@ -44,7 +53,8 @@ from setuptools import setup
 
 setup(
     name='query',
-    version='0.1.2',  # When incrementing, make sure to update Travis link above as well
+    version='0.1.3',  # When incrementing,
+                      # make sure to update Travis link above as well
     url='http://github.com/boydgreenfield/query/',
     license='MIT',
     author='Nick Boyd Greenfield',
@@ -56,11 +66,11 @@ setup(
     zip_safe=True,
     platforms='any',
     install_requires=[
-        'pandas>0.13.1',    # Dev version or 0.14 when released
+        'pandas>=0.14',
         'sqlalchemy>=0.9.1'
     ],
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Framework :: IPython',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
