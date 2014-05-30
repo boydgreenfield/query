@@ -5,7 +5,6 @@ python:
 # command to install dependencies
 install:
   - "pip install -r requirements.txt"
-  - "git clone https://github.com/pydata/pandas.git && cd pandas && python setup.py develop && cd .."  # Temporary until v0.14 release
   - "pip install nose coverage mysql-python ipython"  # Extras needed for testing
   - "pip install ."
 
