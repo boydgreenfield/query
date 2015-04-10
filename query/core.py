@@ -261,8 +261,10 @@ class QueryDb(object):
         # (schema diagram setup to go here)
         self._db_name = database.split("/")[-1].split(":")[0]
         self._summary_info = pd.DataFrame(self._summary_info,
-            columns=["Table", "Primary Key(s)", "# of Columns", "# of Column Types"])
-        self._html = df_to_html(self._summary_info, "%s Database Summary" % self._db_name, bold=True)
+                                          columns=["Table", "Primary Key(s)",
+                                                   "# of Columns", "# of Column Types"])
+        self._html = df_to_html(self._summary_info, "%s Database Summary" % self._db_name,
+                                bold=True)
 
     def _repr_html_(self):
         return self._html
@@ -353,13 +355,17 @@ class QueryDb(object):
                 setattr(table_attr, col,
                         QueryDbOrm(table_cols[col], self))
 
-            # Finally add some summary info
+            # Finally add some summary info:
+            #   Table name
+            #   Primary Key item or list
+            #   N of Cols
+            #   Distinct Col Values (class so NVARCHAR(20) and NVARCHAR(30) are not different)
             primary_keys = table_attr.table.primary_key.columns.keys()
             self._summary_info.append((
-                table,                                                        # Table name
-                primary_keys[0] if len(primary_keys) == 1 else primary_keys,  # Primary Key item or list
-                len(table_cols),                                              # N of Cols
-                len(set([x.type.__class__ for x in table_cols.values()])),    # Distinct Col Values (class so NVARCHAR(20) and NVARCHAR(30) are not different)
+                table,
+                primary_keys[0] if len(primary_keys) == 1 else primary_keys,
+                len(table_cols),
+                len(set([x.type.__class__ for x in table_cols.values()])),
                 ))
 
     def _to_df(self, query, conn, index_col=None, coerce_float=True, params=None,
