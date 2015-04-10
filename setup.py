@@ -9,9 +9,7 @@ and column names, convenience methods for quickly looking at data (e.g.,
 connection up in only 2 lines by setting a few required environmental
 variables.
 
-Please note, query requires pandas >= v0.14.
-
-.. image:: https://travis-ci.org/boydgreenfield/query.svg?branch=v0.1.3
+.. image:: https://travis-ci.org/boydgreenfield/query.svg?branch=v0.1.4
 
 
 Demo in 2 lines
@@ -54,7 +52,7 @@ from setuptools import setup
 
 setup(
     name='query',
-    version='0.1.3',  # When incrementing,
+    version='0.1.4',  # When incrementing,
                       # make sure to update Travis link above as well
     url='http://github.com/boydgreenfield/query/',
     license='MIT',
@@ -67,8 +65,8 @@ setup(
     zip_safe=True,
     platforms='any',
     install_requires=[
-        'pandas>=0.14',
-        'sqlalchemy>=0.9.1'
+        'pandas>=0.16',
+        'sqlalchemy>=0.9.9'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
