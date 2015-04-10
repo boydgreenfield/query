@@ -5,7 +5,7 @@ import pandas as pd
 import os
 import warnings
 
-from query.helpers import setup_demo_env
+import query
 from query.html import df_to_html, GETPASS_USE_WARNING, QUERY_DB_ATTR_MSG
 
 
@@ -205,7 +205,11 @@ class QueryDb(object):
         """
         # Demo mode w/ included dummy database
         if demo:
-            setup_demo_env()
+            drivername = "sqlite"
+            database = os.path.join(
+                os.path.split(os.path.abspath(query.__file__))[0],
+                "sample_data/Chinook_Sqlite.sqlite")
+            use_env_vars = False
 
         # Check if the host, port. or database name options are overwritten
         # by environmental variables
