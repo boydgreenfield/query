@@ -92,7 +92,7 @@ def test_querydb_query():
 
     res = db.query("SELECT * FROM genre", return_as="result")
     assert res.__class__ == sqlalchemy.engine.result.ResultProxy
-    with assert_raises(sqlalchemy.exc.ResourceClosedError):
+    with assert_raises(sqlalchemy.exc.ProgrammingError):
         res.fetchall()  # Fails for sqlite
 
     # And that those are all the values and properly returned by last
