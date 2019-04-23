@@ -66,7 +66,7 @@ setup(
     platforms='any',
     install_requires=[
         'pandas>=0.16',
-        'sqlalchemy>=0.9.9'
+        'sqlalchemy>=1.3.0'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
