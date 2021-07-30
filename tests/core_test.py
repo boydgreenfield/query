@@ -10,7 +10,7 @@ import warnings
 
 # Global setup function. Download DBs if missing.
 def my_setup():
-    # Set fake environmental variables, tests this functionality implicitly througout
+    # Set fake environmental variables, tests this functionality implicitly throughout
     setup_demo_env()
     if not os.path.exists(os.environ.get("QUERY_DB_NAME")):
         raise Exception("Necessary Chinook SQLite test database not found.")
